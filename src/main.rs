@@ -99,7 +99,7 @@ fn generate_coordinate_pairs(seed: u64, size: u64, method: GenerationMethod) -> 
             let batch = 5000;
             let (mut x_rng, mut y_rng) = generate_random_quadrants(&mut rng)?;
             while i < size {
-                if i % 5000 == 0 {
+                if i % batch == 0 {
                     (x_rng, y_rng) = generate_random_quadrants(&mut rng)?;
                 }
 
