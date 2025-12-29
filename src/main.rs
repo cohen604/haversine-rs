@@ -1,4 +1,4 @@
-use std::{fmt::Display, fs, io::Write};
+use std::{fmt::Display, fs, io::Write, path::PathBuf};
 
 use anyhow::{Ok, Result};
 use clap::{Parser, Subcommand, ValueEnum};
@@ -11,6 +11,7 @@ use rand::{
 use crate::haversine::reference_haversine;
 
 mod haversine;
+mod parser;
 
 // Using the same as in the computer enhance code to get similar results
 const EARTH_RADIUS: f64 = 6372.8;
@@ -30,6 +31,11 @@ enum Commands {
         seed: u64,
         #[arg(long)]
         size: u64,
+    },
+
+    Parse {
+        #[arg(short, long)]
+        file_path: PathBuf,
     },
 }
 
@@ -64,6 +70,7 @@ fn main() {
         Commands::Generate { seed, size, method } => {
             generate_coordinate_pairs(seed, size, method).unwrap()
         }
+        Commands::Parse { file_path } => parser::parse_coordinate_pairs(file_path).unwrap(),
     };
 }
 
@@ -107,7 +114,7 @@ fn generate_coordinate_pairs(seed: u64, size: u64, method: GenerationMethod) -> 
                 let haversine =
                     reference_haversine(pair.x0, pair.y0, pair.x1, pair.y1, EARTH_RADIUS)?;
                 let sep = if i == size - 1 { "\n" } else { ",\n" };
-                file.write_all(format!("{pair}{sep}").as_bytes());
+                file.write_all(format!("{pair}{sep}").as_bytes())?;
 
                 sum += sum_coef * haversine;
                 i += 1;
@@ -119,7 +126,7 @@ fn generate_coordinate_pairs(seed: u64, size: u64, method: GenerationMethod) -> 
                 let haversine =
                     reference_haversine(pair.x0, pair.y0, pair.x1, pair.y1, EARTH_RADIUS)?;
                 let sep = if i == size - 1 { "\n" } else { ",\n" };
-                file.write_all(format!("{pair}{sep}").as_bytes());
+                file.write_all(format!("{pair}{sep}").as_bytes())?;
 
                 sum += sum_coef * haversine;
                 i += 1;
