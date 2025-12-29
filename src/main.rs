@@ -12,6 +12,7 @@ use crate::haversine::reference_haversine;
 
 mod haversine;
 mod parser;
+mod profiler;
 
 // Using the same as in the computer enhance code to get similar results
 const EARTH_RADIUS: f64 = 6372.8;
@@ -37,6 +38,8 @@ enum Commands {
         #[arg(short, long)]
         file_path: PathBuf,
     },
+
+    Profile,
 }
 
 #[derive(Clone, ValueEnum)]
@@ -71,6 +74,7 @@ fn main() {
             generate_coordinate_pairs(seed, size, method).unwrap()
         }
         Commands::Parse { file_path } => parser::parse_coordinate_pairs(file_path).unwrap(),
+        Commands::Profile => profiler::get_cpu_frequency(),
     };
 }
 

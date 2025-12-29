@@ -138,7 +138,6 @@ impl Ast {
                 return Err(anyhow::anyhow!("Invalid token: {token:?}"));
             }
         };
-        println!("{:?}", ast);
 
         Ok(ast)
     }
@@ -299,7 +298,6 @@ pub fn parse_coordinate_pairs(file_path: PathBuf) -> Result<()> {
     //     }
     // }
     let ast = Ast::from_tokens(&parser.tokens)?;
-    println!("ast: {:?}", ast);
     Ok(())
 }
 
