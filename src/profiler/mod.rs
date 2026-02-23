@@ -1,3 +1,5 @@
+mod macos;
+
 use std::time::SystemTime;
 
 #[cfg(target_arch = "x86_64")]
@@ -33,7 +35,10 @@ pub fn get_cpu_frequency() {
     let os_freq = get_os_timer_frequency();
     println!("os_freq: {os_freq}");
 
+    let kpc = macos::Kpc::new().expect("Failed to init kpc");
+
     let cpu_start = rdtsc();
+    let kpc_start = kpc.read_cycles();
     let os_start = read_os_timer();
     let mut os_end = 0;
     let mut os_elapsed = 0;
@@ -42,11 +47,16 @@ pub fn get_cpu_frequency() {
         os_elapsed = os_end - os_start;
     }
     let cpu_end = rdtsc();
+    let kpc_end = kpc.read_cycles();
 
     println!("os timer: {os_start:?} -> {os_end:?} = {os_elapsed}");
     println!("os seconds: {}", os_elapsed / os_freq);
     println!(
         "cpu: {cpu_start:?} -> {cpu_end:?} = {}",
         cpu_end - cpu_start
+    );
+    println!(
+        "kpc: {kpc_start:?} -> {kpc_end:?} = {}",
+        kpc_end - kpc_start
     );
 }

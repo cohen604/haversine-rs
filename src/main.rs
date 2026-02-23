@@ -74,7 +74,9 @@ fn main() {
             generate_coordinate_pairs(seed, size, method).unwrap()
         }
         Commands::Parse { file_path } => parser::parse_coordinate_pairs(file_path).unwrap(),
-        Commands::Profile => profiler::get_cpu_frequency(),
+        Commands::Profile => {
+            profiler::get_cpu_frequency();
+        }
     };
 }
 
