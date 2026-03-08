@@ -1,0 +1,19 @@
+[package]
+name = "haversine"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "haversine"
+path = "src/main.rs"
+
+[dependencies]
+
+anyhow = { workspace = true }
+clap = { workspace = true }
+libc = { workspace = true }
+proc-macro2 = { workspace = true }
+quote = { workspace = true }
+rand = { workspace = true }
+syn = { workspace = true }
+
