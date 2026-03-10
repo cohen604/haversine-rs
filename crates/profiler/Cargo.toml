@@ -1,14 +1,12 @@
 [package]
-name = "haversine"
+name = "profiler"
 version.workspace = true
 edition.workspace = true
 
-[[bin]]
-name = "haversine"
-path = "src/main.rs"
+[lib]
+name = "profiler"
 
 [dependencies]
-profiler = { path = "../profiler/" }
 
 anyhow = { workspace = true }
 clap = { workspace = true }

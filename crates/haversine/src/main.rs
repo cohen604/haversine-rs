@@ -9,10 +9,10 @@ use rand::{
 };
 
 use crate::haversine::reference_haversine;
+use profiler;
 
 mod haversine;
 mod parser;
-mod profiler;
 
 // Using the same as in the computer enhance code to get similar results
 const EARTH_RADIUS: f64 = 6372.8;
