@@ -2,6 +2,7 @@ use std::{fmt::Display, fs, io::Write, path::PathBuf};
 
 use anyhow::{Ok, Result};
 use clap::{Parser, Subcommand, ValueEnum};
+use profiler_macros::profile_init;
 use rand::{
     Rng, SeedableRng,
     distr::{Distribution, Uniform},
@@ -66,8 +67,8 @@ impl Display for Pair {
     }
 }
 
+#[profile_init]
 fn main() {
-    let _print_sessions_on_exit = profiler::PrintSessionsOnDrop;
     let cli = Cli::parse();
 
     match cli.command {
