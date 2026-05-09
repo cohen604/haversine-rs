@@ -11,8 +11,4 @@ name = "profiler"
 anyhow = { workspace = true }
 clap = { workspace = true }
 libc = { workspace = true }
-proc-macro2 = { workspace = true }
-quote = { workspace = true }
 rand = { workspace = true }
-syn = { workspace = true }
-

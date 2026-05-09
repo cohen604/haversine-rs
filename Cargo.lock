@@ -131,6 +131,7 @@ dependencies = [
  "libc",
  "proc-macro2",
  "profiler",
+ "profiler-macros",
  "quote",
  "rand",
  "syn",
@@ -185,9 +186,15 @@ dependencies = [
  "anyhow",
  "clap",
  "libc",
+ "rand",
+]
+
+[[package]]
+name = "profiler-macros"
+version = "0.1.0"
+dependencies = [
  "proc-macro2",
  "quote",
- "rand",
  "syn",
 ]
 

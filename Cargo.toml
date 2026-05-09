@@ -1,7 +1,8 @@
 [workspace]
 members = [
 	"crates/haversine",
-	"crates/profiler"
+	"crates/profiler",
+	"crates/profiler-macros",
 ]
 resolver = "2"
 

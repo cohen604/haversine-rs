@@ -67,6 +67,7 @@ impl Display for Pair {
 }
 
 fn main() {
+    let _print_sessions_on_exit = profiler::PrintSessionsOnDrop;
     let cli = Cli::parse();
 
     match cli.command {
@@ -75,7 +76,7 @@ fn main() {
         }
         Commands::Parse { file_path } => parser::parse_coordinate_pairs(file_path).unwrap(),
         Commands::Profile => {
-            profiler::get_cpu_frequency();
+            profiler::clock::get_cpu_frequency();
         }
     };
 }

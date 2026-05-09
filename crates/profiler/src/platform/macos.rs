@@ -23,6 +23,22 @@ pub struct Kpc {
     counter_count: u32,
 }
 
+pub struct KpcCounter {
+    kpc: Kpc,
+}
+
+impl KpcCounter {
+    pub fn new() -> Result<Self, String> {
+        Ok(Self { kpc: Kpc::new()? })
+    }
+}
+
+impl super::CycleCounter for KpcCounter {
+    fn read_cycles(&self) -> u64 {
+        self.kpc.read_cycles()
+    }
+}
+
 impl Kpc {
     pub fn new() -> Result<Self, String> {
         unsafe {
