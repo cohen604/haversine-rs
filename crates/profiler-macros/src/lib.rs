@@ -16,7 +16,7 @@ pub fn profile(_attr: TokenStream, item: TokenStream) -> TokenStream {
         #(#attrs)*
         #vis #sig {
             let __profiler_guard =
-                ::profiler::guard::enter_scope(concat!(module_path!(), "::", stringify!(#fn_name)));
+                ::profiler::enter_scope(concat!(module_path!(), "::", stringify!(#fn_name)));
             let __profiler_guard = __profiler_guard;
             #block
         }
